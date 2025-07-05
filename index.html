@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Accès aux Pages</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #00bfff;
+    }
+    .image-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .image-container a img {
+      max-width: 300px;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .image-container a img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00bfff;
+    }
+    p {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Accès aux pages hébergées</h1>
+
+  <div class="image-container">
+    <div>
+      <a href="https://gthusyt19.github.io/recap.html" target="_blank">
+        <img src="https://via.placeholder.com/300x180.png?text=Récapitulatif+Commande" alt="Récapitulatif">
+      </a>
+      <p>Récapitulatif de commande</p>
+    </div>
+
+    <div>
+      <a href="https://gthusyt19.github.io/dark.html" target="_blank">
+        <img src="https://via.placeholder.com/300x180.png?text=Profil+Dark" alt="Profil Dark">
+      </a>
+      <p>Profil de Dark</p>
+    </div>
+  </div>
+
+</body>
+</html>
