@@ -14,25 +14,29 @@
     h1 {
       color: #00bfff;
     }
-    .image-container {
+    .link-container {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 30px;
+      gap: 50px;
       margin-top: 40px;
     }
-    .image-container a img {
-      max-width: 300px;
+    .link-box {
+      background-color: #1e1e1e;
+      padding: 20px 30px;
       border-radius: 12px;
+      box-shadow: 0 0 10px #000;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
     }
-    .image-container a img:hover {
+    .link-box:hover {
       transform: scale(1.05);
       box-shadow: 0 0 15px #00bfff;
     }
-    p {
-      margin-top: 10px;
+    a {
+      color: #00bfff;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -40,19 +44,13 @@
 
   <h1>Accès aux pages hébergées</h1>
 
-  <div class="image-container">
-    <div>
-      <a href="https://gthusyt19.github.io/recap.html" target="_blank">
-        <img src="https://via.placeholder.com/300x180.png?text=Récapitulatif+Commande" alt="Récapitulatif">
-      </a>
-      <p>Récapitulatif de commande</p>
+  <div class="link-container">
+    <div class="link-box">
+      <a href="https://gthusyt19.github.io/recap.html" target="_blank">📄 Récapitulatif de commande</a>
     </div>
 
-    <div>
-      <a href="https://gthusyt19.github.io/dark.html" target="_blank">
-        <img src="https://via.placeholder.com/300x180.png?text=Profil+Dark" alt="Profil Dark">
-      </a>
-      <p>Profil de Dark</p>
+    <div class="link-box">
+      <a href="https://gthusyt19.github.io/dark.html" target="_blank">👤 Profil de Dark</a>
     </div>
   </div>
 
