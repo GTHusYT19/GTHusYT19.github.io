@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Récapitulatif de commande</title>
+  <title>Récapitulatif de Commande</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -20,24 +20,30 @@
     }
     h1, h2 {
       color: #00bfff;
-    }
-    .section {
-      margin-bottom: 30px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 5px;
     }
     ul {
       list-style: none;
       padding: 0;
     }
     li {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
-    .highlight {
-      color: #ffd700;
+    .label {
       font-weight: bold;
+      color: #cccccc;
     }
     .price {
       color: #90ee90;
       font-weight: bold;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    a {
+      color: #00bfff;
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -48,33 +54,48 @@
     <div class="section">
       <h2>Nom de domaine</h2>
       <ul>
-        <li><span class="highlight">Domaine :</span> crimsondomination.fr</li>
-        <li><span class="highlight">Durée :</span> 10 ans</li>
-        <li><span class="highlight">Prix HT :</span> 75,70 EUR</li>
-        <li><span class="highlight">TVA (20%) :</span> 15,14 EUR</li>
-        <li><span class="highlight">Total TTC :</span> <span class="price">90,84 EUR</span></li>
-        <li><span class="highlight">Renouvellement :</span> Juillet 2035 à 7,79 EUR/an</li>
-        <li><span class="highlight">Options :</span>
+        <li><span class="label">Nom :</span> crimsondomination.fr</li>
+        <li><span class="label">Durée :</span> 10 ans</li>
+        <li><span class="label">Prix HT :</span> <span class="price">75,70 €</span></li>
+        <li><span class="label">TVA (20%) :</span> 15,14 €</li>
+        <li><span class="label">Total TTC :</span> <span class="price">90,84 €</span></li>
+        <li><span class="label">Renouvellement :</span> Juillet 2035 pour 7,79 €/an</li>
+        <li><span class="label">Options incluses :</span>
           <ul>
-            <li>DNSSEC (DNS sécurisé) : Inclus</li>
-            <li>Compte e-mail Zimbra Starter : Inclus</li>
+            <li>DNSSEC (DNS sécurisé)</li>
+            <li>Compte e-mail Zimbra Starter</li>
           </ul>
         </li>
-        <li><span class="highlight">Nombre de produits :</span> 2</li>
+        <li><span class="label">Nombre de produits :</span> 2</li>
+        <li><span class="label">Lien vers la commande :</span>
+          <a href="https://www.ovh.com/fr/order/webcloud/#/webCloud/domain/select?selection=~(domains~(list~(~(name~'crimsondomination.fr~duration~'P10Y))~options~(~'dnssec~'email)))" target="_blank">
+            Commander le domaine sur OVHCloud
+          </a>
+        </li>
       </ul>
     </div>
 
     <div class="section">
       <h2>Serveur Virtuel Privé</h2>
       <ul>
-        <li><span class="highlight">Produit :</span> VPS Comfort 4-16-160</li>
-        <li><span class="highlight">Prix HT/mois :</span> 34,93 EUR</li>
-        <li><span class="highlight">Engagement :</span> 24 mois (-15%)</li>
-        <li><span class="highlight">Cycle de facturation :</span> Mensuel</li>
-        <li><span class="highlight">Localisation du datacenter :</span> France (Strasbourg)</li>
-        <li><span class="highlight">Processeur :</span> Intel 4 vCores</li>
-        <li><span class="highlight">Mémoire :</span> 16 Go</li>
-        <li><span class="highlight">Stockage :</span> 160 Go SSD NVMe</li>
-        <li><span class="highlight">Image OS :</span> Ubuntu 24.10</li>
-        <li><span class="highlight">Licence OS :</span> Incluse</li>
-        <li><span class="highlight">Nombre de produits :</span> 1</li>
+        <li><span class="label">Produit :</span> VPS Elite 8-8-160</li>
+        <li><span class="label">Prix HT / mois :</span> <span class="price">29,32 €</span></li>
+        <li><span class="label">Engagement :</span> 24 mois (-15%)</li>
+        <li><span class="label">Cycle de facturation :</span> Mensuel</li>
+        <li><span class="label">Localisation :</span> France - Strasbourg</li>
+        <li><span class="label">Processeur :</span> Intel 8 vCores</li>
+        <li><span class="label">Mémoire :</span> 8 Go</li>
+        <li><span class="label">Stockage :</span> 160 Go SSD NVMe</li>
+        <li><span class="label">Image OS :</span> Ubuntu 24.10</li>
+        <li><span class="label">Licence OS :</span> Incluse</li>
+        <li><span class="label">Nombre de produits :</span> 1</li>
+        <li><span class="label">Lien vers l'offre :</span>
+          <a href="https://www.ovhcloud.com/fr/vps/configurator/?pricing=degressivity24&processor=Intel&vcore=8__vCore&storage=160__SSD__NVMe" target="_blank">
+            Voir l'offre VPS sur OVHCloud
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
