@@ -18,7 +18,7 @@
       background: #1a1a1a;
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     }
     h1, h2 {
       color: #00bfff;
@@ -39,8 +39,25 @@
       display: block;
       margin-bottom: 10px;
     }
-    p {
+    p, a {
       color: #ccc;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #222;
+    }
+    a {
+      color: #00bfff;
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -48,129 +65,122 @@
   <div class="container">
     <h1>Récapitulatif du Projet Crimson Domination</h1>
 
-    <h2>📦 Plugins installés (tous serveurs confondus) :</h2>
-    <ul>
-      <li><strong>LuckPerms</strong> — gestion des permissions</li>
-      <li><strong>EssentialsX</strong> — commandes de base</li>
-      <li><strong>EssentialsXChat</strong> — formatage du chat</li>
-      <li><strong>EssentialsXSpawn</strong> — gestion du spawn</li>
-      <li><strong>WorldEdit</strong> — édition de terrain</li>
-      <li><strong>FAWE</strong> — version optimisée de WorldEdit</li>
-      <li><strong>WorldGuard</strong> — protection des régions</li>
-      <li><strong>Multiverse-Core</strong> — multi-monde</li>
-      <li><strong>PlotSquared</strong> — gestion des parcelles</li>
-      <li><strong>ViaVersion</strong> — compatibilité versions récentes</li>
-      <li><strong>ViaBackwards</strong> — compatibilité versions anciennes</li>
-      <li><strong>GeyserMC</strong> — compatibilité avec Bedrock</li>
-      <li><strong>Floodgate</strong> — support joueurs Bedrock sans compte Java</li>
-      <li><strong>Dynmap</strong> — carte en ligne du monde</li>
-      <li><strong>OpenAudioMc</strong> — musiques et sons dynamiques</li>
-      <li><strong>BanManager</strong> — gestion des bans/kicks/warns</li>
-      <li><strong>zMenu</strong> — menu personnalisé pour les joueurs</li>
-    </ul>
+    <h2>📦 Choix des logiciels serveur</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Serveur</th>
+          <th>Logiciel recommandé</th>
+          <th>Pourquoi ?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lobby</td>
+          <td>🟢 <a href="https://papermc.io/downloads">PaperMC</a></td>
+          <td>Stable, rapide, pas besoin de fonctions PvP</td>
+        </tr>
+        <tr>
+          <td>Minage</td>
+          <td>🟢 <a href="https://papermc.io/downloads">PaperMC</a></td>
+          <td>Pas besoin d'options PvP spéciales</td>
+        </tr>
+        <tr>
+          <td>Survie (PvP)</td>
+          <td>🟠 <a href="https://purpurmc.org/downloads">Purpur</a></td>
+          <td>Ajoute des réglages PvP (hit delay, no-attack cooldown…)</td>
+        </tr>
+        <tr>
+          <td>BoxPvP</td>
+          <td>🟠 <a href="https://purpurmc.org/downloads">Purpur</a></td>
+          <td>Idéal pour serveurs PvP custom</td>
+        </tr>
+        <tr>
+          <td>BungeeCord</td>
+          <td>🔵 <a href="https://papermc.io/downloads#Waterfall">Waterfall</a></td>
+          <td>Gère les connexions vers les serveurs</td>
+        </tr>
+      </tbody>
+    </table>
 
-    <h2>🛠️ Commandes pour installer les serveurs :</h2>
-    <h3>1. Installer Java :</h3>
+    <h2>💰 Coût total du projet :</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Élément</th>
+          <th>Prix</th>
+          <th>Période</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🌐 <a href="https://www.ovh.com/fr/order/webcloud/#/webCloud/hosting/select?selection=~(domains~(list~(~(name~'crimsondomination.fr))~options~(~'dnssec~'email)))" target="_blank">Domaine crimsondomination.fr (OVH)</a></td>
+          <td>6,59 €</td>
+          <td>1 an</td>
+        </tr>
+        <tr>
+          <td>💻 <a href="https://www.ovhcloud.com/fr/vps/configurator/?pricing=degressivity24&processor=Intel&vcore=8__vCore&storage=160__SSD__NVMe" target="_blank">VPS OVH (32 Go RAM)</a></td>
+          <td>17,05 €</td>
+          <td>1 mois</td>
+        </tr>
+        <tr>
+          <td>🛡️ <a href="https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-8-1-21-7.83626/">Vulcan Anti-Cheat</a></td>
+          <td>17,05 €</td>
+          <td>Paiement unique</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Total 1er mois</th>
+          <th colspan="2">~40,69 €</th>
+        </tr>
+        <tr>
+          <th>Total annuel estimé</th>
+          <th colspan="2">~212,19 € (VPS) + 6,59 € (Domaine)</th>
+        </tr>
+      </tfoot>
+    </table>
+
+    <h2>📦 Tutoriels d'installation</h2>
+    <h3>☕ Installer Java</h3>
     <pre><code>sudo apt update && sudo apt install -y openjdk-17-jre</code></pre>
 
-    <h3>2. Créer les dossiers :</h3>
+    <h3>📁 Créer les dossiers pour les serveurs</h3>
     <pre><code>mkdir -p /home/serveurs/{bungee,lobby,minage,survie1,survie2,site}</code></pre>
 
-    <h3>3. Télécharger les fichiers serveur :</h3>
-    <pre><code># Exemple pour Paper (serveurs Minecraft)
-cd /home/serveurs/lobby
+    <h3>⬇️ Télécharger les serveurs Minecraft (ex. Paper)</h3>
+    <pre><code>cd /home/serveurs/lobby
 curl -o paper.jar https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/550/downloads/paper-1.20.4-550.jar</code></pre>
 
-    <h3>4. Lancer avec la RAM souhaitée :</h3>
+    <h3>🚀 Lancer le serveur avec RAM définie</h3>
     <pre><code>java -Xmx3G -jar paper.jar --nogui</code></pre>
-    <p>Remplace <code>-Xmx3G</code> par la RAM que tu veux attribuer.</p>
 
-    <h3>5. BungeeCord :</h3>
+    <h3>🔗 Installer Waterfall (recommandé)</h3>
     <pre><code>cd /home/serveurs/bungee
-curl -o bungee.jar https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar
-java -Xmx1G -jar bungee.jar</code></pre>
+curl -o waterfall.jar https://papermc.io/api/v2/projects/waterfall/versions/1.20/builds/539/downloads/waterfall-1.20-539.jar
+java -Xmx1G -jar waterfall.jar</code></pre>
 
-    <h3>6. Installer phpMyAdmin + Apache + MariaDB :</h3>
+    <h3>🐳 Installer Docker et Portainer</h3>
+    <pre><code>sudo apt install docker.io -y
+sudo systemctl enable docker
+sudo docker volume create portainer_data
+sudo docker run -d -p 9443:9443 \
+  --name portainer \
+  --restart=always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v portainer_data:/data \
+  portainer/portainer-ce:latest</code></pre>
+
+    <h3>🌐 Installer Apache, MariaDB, PHP, phpMyAdmin</h3>
     <pre><code>sudo apt install apache2 mariadb-server php php-mysql libapache2-mod-php phpmyadmin</code></pre>
 
-    <h3>7. Installer le site Azuriom :</h3>
+    <h3>💻 Installer Azuriom (site web)</h3>
     <pre><code>cd /var/www/html
 sudo wget https://azuriom.com/download -O azuriom.zip
 sudo unzip azuriom.zip
 sudo chown -R www-data:www-data /var/www/html</code></pre>
-    <p>Ensuite, accède via <code>http://votre-ip</code> et suis l'installation web.</p>
 
-    <h2>✨ Objectif :</h2>
-    <p>Créer un <strong>network Minecraft</strong> complet avec :</p>
-    <ul>
-      <li>1 serveur <strong>BungeeCord</strong></li>
-      <li>1 serveur <strong>Lobby</strong></li>
-      <li>1 serveur <strong>Minage</strong></li>
-      <li>2 serveurs <strong>Survie ou PvP Box</strong></li>
-      <li>1 serveur <strong>SQL / Sauvegarde / Panel</strong></li>
-      <li>1 <strong>site Azuriom</strong> relié au domaine <code>crimsondomination.fr</code></li>
-    </ul>
-
-    <h2>📊 VPS OVH Utilisé :</h2>
-    <p><strong>VPS 8 vCores / 32 Go RAM / 160 Go SSD NVMe</strong></p>
-    <ul>
-      <li>Java 17 ou 21</li>
-      <li>MariaDB</li>
-      <li>Apache ou Nginx + PHP 8.2</li>
-      <li>Docker</li>
-      <li>Firewall (UFW), Fail2Ban, Certbot SSL</li>
-    </ul>
-
-    <h2>📂 phpMyAdmin (pour MariaDB/MySQL) :</h2>
-    <p>Pour accéder à ton serveur MySQL via une interface web :</p>
-    <ul>
-      <li>Installé automatiquement avec Apache + PHP</li>
-      <li>Accès via : <code>http://votre-ip/phpmyadmin</code></li>
-    </ul>
-
-    <h2>🌐 Domaine :</h2>
-    <p><code>crimsondomination.fr</code> acheté chez OVH, avec :</p>
-    <ul>
-      <li>DNSSEC activé</li>
-      <li>Email inclus</li>
-      <li>Sous-domaines : <code>play.</code>, <code>panel.</code>, <code>www.</code></li>
-    </ul>
-
-    <h2>⚖️ Sécurité :</h2>
-    <ul>
-      <li>Seul Bungee → port public ouvert (25565)</li>
-      <li>Tous les serveurs derrière IP interne (via vRack ou VPN)</li>
-      <li>OnlyProxyJoin / BungeeGuard activé</li>
-    </ul>
-
-    <h2>⚡ Organisation des ports :</h2>
-    <ul>
-      <li>Lobby : 25566</li>
-      <li>Minage : 25567</li>
-      <li>Survie 1 : 25568</li>
-      <li>Survie 2 / PvP : 25569</li>
-      <li>MySQL : 3306</li>
-      <li>Web : 80 / 443</li>
-    </ul>
-
-    <h2>📊 Répartition RAM (estimation) :</h2>
-    <ul>
-      <li><strong>BungeeCord :</strong> 1 Go</li>
-      <li><strong>Lobby :</strong> 2-3 Go</li>
-      <li><strong>Minage :</strong> 3-4 Go</li>
-      <li><strong>Survie 1 :</strong> 5-6 Go</li>
-      <li><strong>Survie 2 / PvP :</strong> 4-5 Go</li>
-      <li><strong>MySQL :</strong> 512 Mo</li>
-      <li><strong>Site Azuriom :</strong> 1-2 Go</li>
-    </ul>
-
-    <h2>⚙️ Utiliser la RAM efficacement :</h2>
-    <ul>
-      <li>Pour chaque serveur Minecraft, utilise l'option <code>-Xmx</code> pour limiter la RAM. Exemple : <code>-Xmx4G</code></li>
-      <li>Utilise un superviseur comme <strong>Docker</strong> ou <strong>screen/tmux</strong> pour isoler les processus</li>
-      <li>Surveille la mémoire avec <code>htop</code> ou <code>free -h</code></li>
-      <li>Ne surcharge pas tous les serveurs en même temps, ajuste la RAM selon la charge</li>
-    </ul>
+    <p>Accède ensuite à <a href="http://votre-ip">http://votre-ip</a> pour finir l'installation via interface web.</p>
   </div>
 </body>
 </html>
