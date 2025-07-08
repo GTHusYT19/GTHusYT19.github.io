@@ -2,100 +2,143 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Récapitulatif de Commande</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Récapitulatif du Projet Minecraft</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #f0f0f0;
+      background: #f9f9f9;
+      margin: 0;
       padding: 20px;
     }
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: auto;
-      background-color: #1e1e1e;
-      border-radius: 10px;
+      background: white;
       padding: 30px;
-      box-shadow: 0 0 10px #000;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     h1, h2 {
-      color: #00bfff;
-      border-bottom: 1px solid #333;
-      padding-bottom: 5px;
+      color: #cc0000;
     }
     ul {
-      list-style: none;
-      padding: 0;
+      line-height: 1.8;
     }
-    li {
-      margin-bottom: 10px;
-    }
-    .label {
-      font-weight: bold;
-      color: #cccccc;
-    }
-    .price {
-      color: #90ee90;
-      font-weight: bold;
-    }
-    .section {
-      margin-bottom: 30px;
-    }
-    a {
-      color: #00bfff;
-      text-decoration: underline;
+    code, pre {
+      background-color: #eee;
+      padding: 2px 5px;
+      border-radius: 5px;
+      white-space: pre-wrap;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Récapitulatif de Commande</h1>
+    <h1>Récapitulatif du Projet Crimson Domination</h1>
 
-    <div class="section">
-      <h2>Nom de domaine</h2>
-      <ul>
-        <li><span class="label">Nom :</span> crimsondomination.fr</li>
-        <li><span class="label">Durée :</span> 10 ans</li>
-        <li><span class="label">Prix HT :</span> <span class="price">75,70 €</span></li>
-        <li><span class="label">TVA (20%) :</span> 15,14 €</li>
-        <li><span class="label">Total TTC :</span> <span class="price">90,84 €</span></li>
-        <li><span class="label">Renouvellement :</span> Juillet 2035 pour 7,79 €/an</li>
-        <li><span class="label">Options incluses :</span>
-          <ul>
-            <li>DNSSEC (DNS sécurisé)</li>
-            <li>Compte e-mail Zimbra Starter</li>
-          </ul>
-        </li>
-        <li><span class="label">Nombre de produits :</span> 2</li>
-        <li><span class="label">Lien vers la commande :</span>
-          <a href="https://www.ovh.com/fr/order/webcloud/#/webCloud/domain/select?selection=~(domains~(list~(~(name~'crimsondomination.fr~duration~'P10Y))~options~(~'dnssec~'email)))" target="_blank">
-            Commander le domaine sur OVHCloud
-          </a>
-        </li>
-      </ul>
-    </div>
+    <h2>🛠️ Commandes pour installer les serveurs :</h2>
+    <h3>1. Installer Java :</h3>
+    <pre><code>sudo apt update && sudo apt install -y openjdk-17-jre</code></pre>
 
-    <div class="section">
-      <h2>Serveur Virtuel Privé</h2>
-      <ul>
-        <li><span class="label">Produit :</span> VPS Elite 8-8-160</li>
-        <li><span class="label">Prix HT / mois :</span> <span class="price">29,32 €</span></li>
-        <li><span class="label">Engagement :</span> 24 mois (-15%)</li>
-        <li><span class="label">Cycle de facturation :</span> Mensuel</li>
-        <li><span class="label">Localisation :</span> France - Strasbourg</li>
-        <li><span class="label">Processeur :</span> Intel 8 vCores</li>
-        <li><span class="label">Mémoire :</span> 8 Go</li>
-        <li><span class="label">Stockage :</span> 160 Go SSD NVMe</li>
-        <li><span class="label">Image OS :</span> Ubuntu 24.10</li>
-        <li><span class="label">Licence OS :</span> Incluse</li>
-        <li><span class="label">Nombre de produits :</span> 1</li>
-        <li><span class="label">Lien vers l'offre :</span>
-          <a href="https://www.ovhcloud.com/fr/vps/configurator/?pricing=degressivity24&processor=Intel&vcore=8__vCore&storage=160__SSD__NVMe" target="_blank">
-            Voir l'offre VPS sur OVHCloud
-          </a>
-        </li>
-      </ul>
-    </div>
+    <h3>2. Créer les dossiers :</h3>
+    <pre><code>mkdir -p /home/serveurs/{bungee,lobby,minage,survie1,survie2,site}</code></pre>
+
+    <h3>3. Télécharger les fichiers serveur :</h3>
+    <pre><code># Exemple pour Paper (serveurs Minecraft)
+cd /home/serveurs/lobby
+curl -o paper.jar https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/550/downloads/paper-1.20.4-550.jar</code></pre>
+
+    <h3>4. Lancer avec la RAM souhaitée :</h3>
+    <pre><code>java -Xmx3G -jar paper.jar --nogui</code></pre>
+    <p>Remplace <code>-Xmx3G</code> par la RAM que tu veux attribuer.</p>
+
+    <h3>5. BungeeCord :</h3>
+    <pre><code>cd /home/serveurs/bungee
+curl -o bungee.jar https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar
+java -Xmx1G -jar bungee.jar</code></pre>
+
+    <h3>6. Installer phpMyAdmin + Apache + MariaDB :</h3>
+    <pre><code>sudo apt install apache2 mariadb-server php php-mysql libapache2-mod-php phpmyadmin</code></pre>
+
+    <h3>7. Installer le site Azuriom :</h3>
+    <pre><code>cd /var/www/html
+sudo wget https://azuriom.com/download -O azuriom.zip
+sudo unzip azuriom.zip
+sudo chown -R www-data:www-data /var/www/html</code></pre>
+    <p>Ensuite, accède via <code>http://votre-ip</code> et suis l'installation web.</p>
+
+    <h2>✨ Objectif :</h2>
+    <p>Créer un <strong>network Minecraft</strong> complet avec :</p>
+    <ul>
+      <li>1 serveur <strong>BungeeCord</strong></li>
+      <li>1 serveur <strong>Lobby</strong></li>
+      <li>1 serveur <strong>Minage</strong></li>
+      <li>2 serveurs <strong>Survie ou PvP Box</strong></li>
+      <li>1 serveur <strong>SQL / Sauvegarde / Panel</strong></li>
+      <li>1 <strong>site Azuriom</strong> relié au domaine <code>crimsondomination.fr</code></li>
+    </ul>
+
+    <h2>📊 VPS OVH Utilisé :</h2>
+    <p><strong>VPS 8 vCores / 32 Go RAM / 160 Go SSD NVMe</strong></p>
+    <ul>
+      <li>Java 17 ou 21</li>
+      <li>MariaDB</li>
+      <li>Apache ou Nginx + PHP 8.2</li>
+      <li>Docker</li>
+      <li>Firewall (UFW), Fail2Ban, Certbot SSL</li>
+    </ul>
+
+    <h2>📂 phpMyAdmin (pour MariaDB/MySQL) :</h2>
+    <p>Pour accéder à ton serveur MySQL via une interface web :</p>
+    <ul>
+      <li>Installé automatiquement avec Apache + PHP</li>
+      <li>Accès via : <code>http://votre-ip/phpmyadmin</code></li>
+    </ul>
+
+    <h2>🌐 Domaine :</h2>
+    <p><code>crimsondomination.fr</code> acheté chez OVH, avec :</p>
+    <ul>
+      <li>DNSSEC activé</li>
+      <li>Email inclus</li>
+      <li>Sous-domaines : <code>play.</code>, <code>panel.</code>, <code>www.</code></li>
+    </ul>
+
+    <h2>⚖️ Sécurité :</h2>
+    <ul>
+      <li>Seul Bungee → port public ouvert (25565)</li>
+      <li>Tous les serveurs derrière IP interne (via vRack ou VPN)</li>
+      <li>OnlyProxyJoin / BungeeGuard activé</li>
+    </ul>
+
+    <h2>⚡ Organisation des ports :</h2>
+    <ul>
+      <li>Lobby : 25566</li>
+      <li>Minage : 25567</li>
+      <li>Survie 1 : 25568</li>
+      <li>Survie 2 / PvP : 25569</li>
+      <li>MySQL : 3306</li>
+      <li>Web : 80 / 443</li>
+    </ul>
+
+    <h2>📊 Répartition RAM (estimation) :</h2>
+    <ul>
+      <li><strong>BungeeCord :</strong> 1 Go</li>
+      <li><strong>Lobby :</strong> 2-3 Go</li>
+      <li><strong>Minage :</strong> 3-4 Go</li>
+      <li><strong>Survie 1 :</strong> 5-6 Go</li>
+      <li><strong>Survie 2 / PvP :</strong> 4-5 Go</li>
+      <li><strong>MySQL :</strong> 512 Mo</li>
+      <li><strong>Site Azuriom :</strong> 1-2 Go</li>
+    </ul>
+
+    <h2>⚙️ Utiliser la RAM efficacement :</h2>
+    <ul>
+      <li>Pour chaque serveur Minecraft, utilise l'option <code>-Xmx</code> pour limiter la RAM. Exemple : <code>-Xmx4G</code></li>
+      <li>Utilise un superviseur comme <strong>Docker</strong> ou <strong>screen/tmux</strong> pour isoler les processus</li>
+      <li>Surveille la mémoire avec <code>htop</code> ou <code>free -h</code></li>
+      <li>Ne surcharge pas tous les serveurs en même temps, ajuste la RAM selon la charge</li>
+    </ul>
   </div>
 </body>
 </html>
