@@ -71,6 +71,7 @@
         <tr>
           <th>Serveur</th>
           <th>Logiciel recommandé</th>
+          <th>Version Minecraft</th>
           <th>Pourquoi ?</th>
         </tr>
       </thead>
@@ -78,26 +79,31 @@
         <tr>
           <td>Lobby</td>
           <td>🟢 <a href="https://papermc.io/downloads">PaperMC</a></td>
+          <td>1.20.4 / 1.21.1</td>
           <td>Stable, rapide, pas besoin de fonctions PvP</td>
         </tr>
         <tr>
           <td>Minage</td>
           <td>🟢 <a href="https://papermc.io/downloads">PaperMC</a></td>
+          <td>1.20.4 / 1.21.1</td>
           <td>Pas besoin d'options PvP spéciales</td>
         </tr>
         <tr>
           <td>Survie (PvP)</td>
           <td>🟠 <a href="https://purpurmc.org/downloads">Purpur</a></td>
+          <td>1.20.1 / 1.21.1</td>
           <td>Ajoute des réglages PvP (hit delay, no-attack cooldown…)</td>
         </tr>
         <tr>
           <td>BoxPvP</td>
           <td>🟠 <a href="https://purpurmc.org/downloads">Purpur</a></td>
+          <td>1.20.1 / 1.21.1</td>
           <td>Idéal pour serveurs PvP custom</td>
         </tr>
         <tr>
           <td>BungeeCord</td>
           <td>🔵 <a href="https://papermc.io/downloads#Waterfall">Waterfall</a></td>
+          <td>Proxy (toutes versions)</td>
           <td>Gère les connexions vers les serveurs</td>
         </tr>
       </tbody>
@@ -141,46 +147,12 @@
       </tfoot>
     </table>
 
-    <h2>📦 Tutoriels d'installation</h2>
-    <h3>☕ Installer Java</h3>
-    <pre><code>sudo apt update && sudo apt install -y openjdk-17-jre</code></pre>
-
-    <h3>📁 Créer les dossiers pour les serveurs</h3>
-    <pre><code>mkdir -p /home/serveurs/{bungee,lobby,minage,survie1,survie2,site}</code></pre>
-
-    <h3>⬇️ Télécharger les serveurs Minecraft (ex. Paper)</h3>
-    <pre><code>cd /home/serveurs/lobby
-curl -o paper.jar https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/550/downloads/paper-1.20.4-550.jar</code></pre>
-
-    <h3>🚀 Lancer le serveur avec RAM définie</h3>
-    <pre><code>java -Xmx3G -jar paper.jar --nogui</code></pre>
-
-    <h3>🔗 Installer Waterfall (recommandé)</h3>
-    <pre><code>cd /home/serveurs/bungee
-curl -o waterfall.jar https://papermc.io/api/v2/projects/waterfall/versions/1.20/builds/539/downloads/waterfall-1.20-539.jar
-java -Xmx1G -jar waterfall.jar</code></pre>
-
-    <h3>🐳 Installer Docker et Portainer</h3>
-    <pre><code>sudo apt install docker.io -y
-sudo systemctl enable docker
-sudo docker volume create portainer_data
-sudo docker run -d -p 9443:9443 \
-  --name portainer \
-  --restart=always \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v portainer_data:/data \
-  portainer/portainer-ce:latest</code></pre>
-
-    <h3>🌐 Installer Apache, MariaDB, PHP, phpMyAdmin</h3>
-    <pre><code>sudo apt install apache2 mariadb-server php php-mysql libapache2-mod-php phpmyadmin</code></pre>
-
-    <h3>💻 Installer Azuriom (site web)</h3>
-    <pre><code>cd /var/www/html
-sudo wget https://azuriom.com/download -O azuriom.zip
-sudo unzip azuriom.zip
-sudo chown -R www-data:www-data /var/www/html</code></pre>
-
-    <p>Accède ensuite à <a href="http://votre-ip">http://votre-ip</a> pour finir l'installation via interface web.</p>
+    <h2>📥 Lien vers les serveurs Minecraft</h2>
+    <ul>
+      <li><a href="https://papermc.io/downloads">📄 Télécharger PaperMC</a></li>
+      <li><a href="https://purpurmc.org/downloads">📄 Télécharger Purpur</a></li>
+      <li><a href="https://papermc.io/downloads#Waterfall">📄 Télécharger Waterfall (BungeeCord)</a></li>
+    </ul>
   </div>
 </body>
 </html>
