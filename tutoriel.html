@@ -60,22 +60,64 @@
 
     <div class="sep">────────────────────────────</div>
     <h2>🧰 INSTALLER LE PANEL PTERODACTYL AVEC LE SCRIPT AUTOMATIQUE</h2>
-    <pre>
+<pre>
 # Connexion SSH à votre VPS
 ssh root@IP_DU_VPS
 
 # Télécharger le script officiel
 bash <(curl -s https://raw.githubusercontent.com/pterodactyl-installer/pterodactyl-installer/main/install.sh)
+    </pre>
 
-# Suivre les instructions à l'écran pour :
-# - L'installation du panel
-# - La configuration de la base de données
-# - L'installation de Wings
+    <h2>🔧 CONFIGURATION COMPLÈTE DU PANEL PTERODACTYL</h2>
+<pre>
+# Étapes principales après installation automatique :
+
+1. Créer la base de données dans MariaDB :
+   mysql -u root -p
+   CREATE DATABASE panel;
+   CREATE USER 'ptero'@'127.0.0.1' IDENTIFIED BY 'motdepassefort';
+   GRANT ALL PRIVILEGES ON panel.* TO 'ptero'@'127.0.0.1';
+   FLUSH PRIVILEGES;
+   EXIT;
+
+2. Configurer l'environnement Laravel :
+   cd /var/www/pterodactyl
+   cp .env.example .env
+   php artisan key:generate
+   php artisan p:environment:setup
+   php artisan p:environment:database
+   php artisan migrate --seed --force
+   php artisan p:user:make
+
+3. Configurer Nginx pour le panel :
+   nano /etc/nginx/sites-available/pterodactyl
+
+   # Exemple de bloc :
+   server {
+       listen 80;
+       server_name votre-domaine.fr;
+       root /var/www/pterodactyl/public;
+
+       index index.php;
+       location / {
+           try_files $uri $uri/ /index.php?$query_string;
+       }
+
+       location ~ \.(php|phar)$ {
+           include snippets/fastcgi-php.conf;
+           fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+           fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+           include fastcgi_params;
+       }
+   }
+
+   ln -s /etc/nginx/sites-available/pterodactyl /etc/nginx/sites-enabled/pterodactyl
+   systemctl restart nginx
     </pre>
 
     <div class="sep">────────────────────────────</div>
     <h2>📂 CRÉER 5 SERVEURS VIA LE PANEL</h2>
-    <pre>
+<pre>
 1. Accédez à votre panel : https://votre-domaine-ou-ip
 2. Connectez-vous en tant qu'administrateur
 3. Allez dans : "Serveurs" > "Créer un serveur"
@@ -90,8 +132,33 @@ bash <(curl -s https://raw.githubusercontent.com/pterodactyl-installer/pterodact
     </pre>
 
     <div class="sep">────────────────────────────</div>
+    <h2>🧠 ALLOUER DE LA RAM À CHAQUE SERVEUR</h2>
+<pre>
+Lors de la création de chaque serveur :
+
+1. Dans l’onglet « Limites » :
+   - Mémoire (RAM) : ex. 4096 pour 4 Go
+   - Mémoire de swap : 0
+   - CPU : 200 pour 2 cœurs (200% d'un cœur)
+   - Stockage : ex. 10240 pour 10 Go
+
+2. Activer les limites :
+   - Cochez « Appliquer les limites mémoire »
+   - Cochez « Bloquer sur dépassement » si vous voulez éviter les crash
+
+💡 Exemple de répartition RAM sur un VPS 32 Go :
+- Panel + Azuriom + MariaDB : 2-3 Go
+- BungeeCord : 512 Mo à 1 Go
+- Lobby : 2 Go
+- Survie1 : 4 Go
+- Survie2 : 4 Go
+- Minage : 4 Go
+- Discord Bot : < 256 Mo
+    </pre>
+
+    <div class="sep">────────────────────────────</div>
     <h2>⚙️ ASTUCE POUR LANCEMENT AUTOMATIQUE DES SERVEURS</h2>
-    <pre>
+<pre>
 # Assurez-vous que Wings est activé au démarrage
 sudo systemctl enable wings
 
@@ -100,7 +167,7 @@ sudo systemctl enable wings
 
     <div class="sep">────────────────────────────</div>
     <h2>🌐 INSTALLER UN SITE WEB (AZURIOM)</h2>
-    <pre>
+<pre>
 # Installer Apache, PHP et MariaDB
 sudo apt update && sudo apt install apache2 mariadb-server php php-mysql libapache2-mod-php unzip curl
 
@@ -116,7 +183,7 @@ http://IP_DU_SERVEUR ou domaine pointé vers le VPS
 
     <div class="sep">────────────────────────────</div>
     <h2>🤖 CRÉER UN BOT DISCORD SIMPLIFIÉ (PYTHON)</h2>
-    <pre>
+<pre>
 # Installer Python et pip
 sudo apt install python3 python3-pip -y
 
@@ -148,6 +215,70 @@ python3 bot.py
     <p style="text-align: center; margin-top: 50px;">
       <a href="recap.html">⬅️ Retour au récapitulatif</a>
     </p>
+  <div class="sep">────────────────────────────</div>
+<h2>🔐 SÉCURISER LE VPS (UFW + FAIL2BAN)</h2>
+<pre>
+# Activer le pare-feu UFW (autoriser SSH + HTTP/HTTPS)
+sudo ufw allow OpenSSH
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw enable
+
+# Installer fail2ban pour bloquer les attaques bruteforce
+sudo apt install fail2ban -y
+sudo systemctl enable fail2ban --now
+</pre>
+
+<div class="sep">────────────────────────────</div>
+<h2>🔒 ACTIVER HTTPS AVEC LET'S ENCRYPT</h2>
+<pre>
+# Installer Certbot
+sudo apt install certbot python3-certbot-nginx -y
+
+# Lancer la génération HTTPS pour le panel
+sudo certbot --nginx -d votre-domaine.fr
+
+# Renouvellement automatique inclus
+</pre>
+
+<div class="sep">────────────────────────────</div>
+<h2>📦 SAUVEGARDE AUTOMATIQUE DES SERVEURS</h2>
+<pre>
+# Créer un script de backup simple
+sudo nano /usr/local/bin/backup-ptero.sh
+
+# Exemple de contenu :
+#!/bin/bash
+tar -czf /root/backups/pterodactyl-$(date +%F).tar.gz /var/lib/pterodactyl
+
+# Rendre le script exécutable
+chmod +x /usr/local/bin/backup-ptero.sh
+
+# Lancer tous les jours à 3h du matin
+crontab -e
+0 3 * * * /usr/local/bin/backup-ptero.sh
+</pre>
+
+<div class="sep">────────────────────────────</div>
+<h2>📧 CONFIGURER SMTP POUR LE PANEL</h2>
+<pre>
+# Modifier le fichier .env
+cd /var/www/pterodactyl
+nano .env
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.example.com
+MAIL_PORT=587
+MAIL_USERNAME=votre@email.com
+MAIL_PASSWORD=motdepasse
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=votre@email.com
+MAIL_FROM_NAME="Crimson Panel"
+
+# Appliquer la config
+php artisan config:clear
+</pre>
+
   </div>
 </body>
 </html>
