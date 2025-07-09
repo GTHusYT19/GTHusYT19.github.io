@@ -86,19 +86,35 @@ java -Xmx1G -jar waterfall.jar
     </pre>
 
     <div class="sep">────────────────────────────</div>
-    <h2>🐳 INSTALLER DOCKER + PORTAINER</h2>
+    <h2>🧩 INSTALLER PTERODACTYL PANEL (FRONT-END)</h2>
     <pre>
-sudo apt install docker.io -y
-sudo systemctl enable docker
+# Installer dépendances
+sudo apt install -y nginx mariadb-server php php-cli php-mysql php-fpm \
+    php-zip php-bcmath php-curl php-mbstring php-xml php-gd unzip tar curl
 
-sudo docker volume create portainer_data
+# Télécharger Pterodactyl
+cd /var/www/
+sudo mkdir pterodactyl && cd pterodactyl
+sudo curl -Lo panel.tar.gz https://github.com/pterodactyl/panel/releases/latest/download/panel.tar.gz
+sudo tar -xzvf panel.tar.gz
+sudo chmod -R 755 storage/* bootstrap/cache
 
-sudo docker run -d -p 9443:9443 \
-  --name portainer \
-  --restart=always \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v portainer_data:/data \
-  portainer/portainer-ce:latest
+# Configurer la base de données + .env
+cp .env.example .env
+php artisan key:generate
+    </pre>
+
+    <div class="sep">────────────────────────────</div>
+    <h2>🎮 INSTALLER PTERODACTYL WINGS (DAEMON)</h2>
+    <pre>
+# Installer Docker requis
+sudo apt install -y docker.io
+sudo systemctl enable --now docker
+
+# Télécharger Wings
+cd /etc/pterodactyl
+sudo curl -Lo wings https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_amd64
+sudo chmod +x wings
     </pre>
 
     <div class="sep">────────────────────────────</div>
@@ -113,6 +129,10 @@ sudo wget https://azuriom.com/download -O azuriom.zip
 sudo unzip azuriom.zip
 sudo chown -R www-data:www-data /var/www/html
     </pre>
+
+    <p style="text-align: center; margin-top: 50px;">
+      <a href="index.html">⬅️ Retour au récapitulatif</a>
+    </p>
   </div>
 </body>
 </html>
