@@ -56,6 +56,175 @@
 </head>
 <body>
   <div class="container">
+
+    <div class="sep">────────────────────────────</div>
+    <h2>🧠 EXPLICATION COMPLÈTE DE L'INSTALLATION</h2>
+    <pre>
+Ce tutoriel couvre toutes les étapes pour installer un serveur de jeux complet sur un seul VPS OVH, incluant :
+
+- Le panel Pterodactyl (gestion web)
+- Le node Wings (lance les serveurs via Docker)
+- 5 serveurs Minecraft (Lobby, Survie, Minage, Proxy...)
+- Un site communautaire (Azuriom)
+- Un bot Discord en Python
+- La sécurité (UFW, Fail2Ban, HTTPS, sauvegardes)
+
+💡 Tout est optimisé pour un VPS 8 vCPU / 32 Go de RAM / 160 Go NVMe.
+    </pre>
+
+    <div class="sep">────────────────────────────</div>
+    <h2>🧰 INSTALLER LE PANEL PTERODACTYL AVEC LE SCRIPT AUTOMATIQUE</h2>
+    <pre>
+ssh root@IP_DU_VPS
+bash &lt;(curl -s https://raw.githubusercontent.com/pterodactyl-installer/pterodactyl-installer/main/install.sh)
+    </pre>
+
+    <div class="sep">────────────────────────────</div>
+    <h2>🔧 CONFIGURATION COMPLÈTE DU PANEL PTERODACTYL</h2>
+    <pre>
+# Créer la base de données
+mysql -u root -p
+CREATE DATABASE panel;
+CREATE USER 'ptero'@'127.0.0.1' IDENTIFIED BY 'motdepassefort';
+GRANT ALL PRIVILEGES ON panel.* TO 'ptero'@'127.0.0.1';
+FLUSH PRIVILEGES;
+EXIT;
+
+# Configurer le panel
+cd /var/www/pterodactyl
+cp .env.example .env
+php artisan key:generate
+php artisan p:environment:setup
+php artisan p:environment:database
+php artisan migrate --seed --force
+php artisan p:user:make
+    </pre>
+
+    <div class="sep">────────────────────────────</div>
+    <h2>🌐 CONFIGURATION NGINX POUR LE PANEL</h2>
+    <pre>
+nano /etc/nginx/sites-available/pterodactyl
+
+# Exemple :
+server {
+    listen 80;
+    server_name votre-domaine.fr;
+    root /var/www/pterodactyl/public;
+
+    index index.php;
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.(php|phar)$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
+
+ln -s /etc/nginx/sites-available/pterodactyl /etc/nginx/sites-enabled/pterodactyl
+systemctl restart nginx
+    </pre>
+
+    <div class="sep">────────────────────────────</div>
+    <h2>📂 CRÉER 5 SERVEURS VIA LE PANEL</h2>
+    <pre>
+1. Accéder à https://votre-domaine-ou-ip
+2. Connexion admin &gt; Serveurs &gt; Créer un serveur
+3. Exemple de serveurs :
+   - Lobby
+   - Survie1
+   - Survie2
+   - Minage
+   - BungeeCord
+    </pre>
+
+    <div class="sep">────────────────────────────</div>
+    <h2>🧠 ALLOUER DE LA RAM À CHAQUE SERVEUR</h2>
+    <pre>
+- RAM : 4096 (4 Go)
+- CPU : 200 (2 cœurs logiques)
+- Stockage : 10240 (10 Go)
+- Swap : 0
+
+💡 Répartition idéale (VPS 32 Go) :
+- Panel + Azuriom : 2-3 Go
+- Bungee : 1 Go
+- Lobby : 2 Go
+- Survie1/2 : 4 Go chacun
+- Minage : 4 Go
+    </pre>
+
+    <div class="sep">────────────────────────────</div>
+    <h2>🚀 INSTALLER LE NODE (WINGS)</h2>
+    <pre>
+mkdir -p /etc/pterodactyl
+cd /etc/pterodactyl
+curl -Lo wings https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_amd64
+chmod +x wings
+
+# Obtenir config dans le panel &gt; Nodes &gt; "Configurer Wings"
+nano /etc/pterodactyl/config.yml
+./wings
+    </pre>
+
+    <div class="sep">────────────────────────────</div>
+    <h2>⚙️ ACTIVER WINGS AU DÉMARRAGE</h2>
+    <pre>
+nano /etc/systemd/system/wings.service
+
+[Unit]
+Description=Pterodactyl Wings Daemon
+After=docker.service
+Requires=docker.service
+
+[Service]
+User=root
+WorkingDirectory=/etc/pterodactyl
+ExecStart=/etc/pterodactyl/wings
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+# Lancer
+systemctl daemon-reexec
+systemctl enable --now wings
+    </pre>
+
+    <div class="sep">────────────────────────────</div>
+    <h2>🧠 EXPLICATION COMPLÈTE DE L'INSTALLATION</h2>
+    <pre>
+Ce tutoriel couvre toutes les étapes pour installer un serveur de jeux complet sur un seul VPS OVH, incluant :
+
+- Le panel Pterodactyl (gestion web)
+- Le node Wings (lance les serveurs via Docker)
+- 5 serveurs Minecraft (Lobby, Survie, Minage, Proxy...)
+- Un site communautaire (Azuriom)
+- Un bot Discord en Python
+- La sécurité (UFW, Fail2Ban, HTTPS, sauvegardes)
+
+Voici comment tout fonctionne ensemble :
+
+1. Le script Pterodactyl installe automatiquement le panel web + dépendances.
+2. Tu configures manuellement :
+   - la base de données MariaDB
+   - le fichier .env de Laravel
+   - Nginx pour exposer le site
+3. Tu crées les 5 serveurs dans l’interface du panel avec RAM, CPU, ports.
+4. Wings (le node) est installé pour exécuter les serveurs (Docker).
+5. Wings est lancé en service systemd (redémarrage automatique).
+6. Azuriom est installé comme CMS web Minecraft (Apache + PHP).
+7. Un bot Discord est ajouté pour des automatisations simples.
+8. UFW + Fail2ban assurent la sécurité réseau.
+9. HTTPS est activé avec Certbot + Let's Encrypt (SSL).
+10. Des sauvegardes automatiques sont mises en place avec cron.
+11. Un système SMTP permet l’envoi de mails depuis le panel.
+
+💡 Résultat : tout est fonctionnel, sécurisé, et prêt pour héberger ta communauté Minecraft/Discord !
+    </pre>
     <h1>📦 Tutoriels d'installation – Crimson Domination</h1>
 
     <div class="sep">────────────────────────────</div>
@@ -216,6 +385,50 @@ python3 bot.py
       <a href="recap.html">⬅️ Retour au récapitulatif</a>
     </p>
   <div class="sep">────────────────────────────</div>
+<h2>🚀 INSTALLER LE NODE (WINGS)</h2>
+<pre>
+# Créer le dossier
+mkdir -p /etc/pterodactyl
+cd /etc/pterodactyl
+
+# Télécharger Wings
+curl -Lo wings https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_amd64
+chmod +x wings
+
+# Créer le fichier de configuration (depuis le panel)
+# Dans le panel Pterodactyl : Configuration > Nodes > "Configurer Wings"
+# Copier le contenu YAML et le coller dans :
+nano /etc/pterodactyl/config.yml
+
+# Lancer Wings
+./wings
+
+# (Optionnel) Créer un service systemd pour Wings
+nano /etc/systemd/system/wings.service
+
+# Contenu du fichier systemd :
+[Unit]
+Description=Pterodactyl Wings Daemon
+After=docker.service
+Requires=docker.service
+
+[Service]
+User=root
+WorkingDirectory=/etc/pterodactyl
+ExecStart=/etc/pterodactyl/wings
+Restart=on-failure
+StartLimitInterval=600
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target
+
+# Activer et démarrer le service
+systemctl daemon-reexec
+systemctl enable --now wings
+</pre>
+
+<div class="sep">────────────────────────────</div>
 <h2>🔐 SÉCURISER LE VPS (UFW + FAIL2BAN)</h2>
 <pre>
 # Activer le pare-feu UFW (autoriser SSH + HTTP/HTTPS)
