@@ -59,75 +59,90 @@
     <h1>📦 Tutoriels d'installation – Crimson Domination</h1>
 
     <div class="sep">────────────────────────────</div>
-    <h2>☕ INSTALLER JAVA</h2>
-    <pre>sudo apt update && sudo apt install -y openjdk-17-jre</pre>
-
-    <div class="sep">────────────────────────────</div>
-    <h2>📁 CRÉER LES DOSSIERS POUR LES SERVEURS</h2>
-    <pre>mkdir -p /home/serveurs/{bungee,lobby,minage,survie1,survie2,site}</pre>
-
-    <div class="sep">────────────────────────────</div>
-    <h2>⬇️ TÉLÉCHARGER LES SERVEURS MINECRAFT (ex. Paper)</h2>
+    <h2>🧰 INSTALLER LE PANEL PTERODACTYL AVEC LE SCRIPT AUTOMATIQUE</h2>
     <pre>
-cd /home/serveurs/lobby
-curl -o paper.jar https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/550/downloads/paper-1.20.4-550.jar
+# Connexion SSH à votre VPS
+ssh root@IP_DU_VPS
+
+# Télécharger le script officiel
+bash <(curl -s https://raw.githubusercontent.com/pterodactyl-installer/pterodactyl-installer/main/install.sh)
+
+# Suivre les instructions à l'écran pour :
+# - L'installation du panel
+# - La configuration de la base de données
+# - L'installation de Wings
     </pre>
 
     <div class="sep">────────────────────────────</div>
-    <h2>🚀 LANCER LE SERVEUR AVEC RAM DÉFINIE</h2>
-    <pre>java -Xmx3G -jar paper.jar --nogui</pre>
-
-    <div class="sep">────────────────────────────</div>
-    <h2>🔗 INSTALLER WATERFALL (RECOMMANDÉ POUR LE PROXY)</h2>
+    <h2>📂 CRÉER 5 SERVEURS VIA LE PANEL</h2>
     <pre>
-cd /home/serveurs/bungee
-curl -o waterfall.jar https://papermc.io/api/v2/projects/waterfall/versions/1.20/builds/539/downloads/waterfall-1.20-539.jar
-java -Xmx1G -jar waterfall.jar
+1. Accédez à votre panel : https://votre-domaine-ou-ip
+2. Connectez-vous en tant qu'administrateur
+3. Allez dans : "Serveurs" > "Créer un serveur"
+4. Répétez l'opération pour les 5 serveurs :
+   - Lobby
+   - Survie1
+   - Survie2
+   - Minage
+   - BungeeCord (ou Waterfall)
+
+💡 Pensez à définir une allocation de RAM, un port, une image Docker valide (ex: ghcr.io/pterodactyl/yolks:java_17), et à activer le serveur Wings associé.
     </pre>
 
     <div class="sep">────────────────────────────</div>
-    <h2>🧩 INSTALLER PTERODACTYL PANEL (FRONT-END)</h2>
+    <h2>⚙️ ASTUCE POUR LANCEMENT AUTOMATIQUE DES SERVEURS</h2>
     <pre>
-# Installer dépendances
-sudo apt install -y nginx mariadb-server php php-cli php-mysql php-fpm \
-    php-zip php-bcmath php-curl php-mbstring php-xml php-gd unzip tar curl
+# Assurez-vous que Wings est activé au démarrage
+sudo systemctl enable wings
 
-# Télécharger Pterodactyl
-cd /var/www/
-sudo mkdir pterodactyl && cd pterodactyl
-sudo curl -Lo panel.tar.gz https://github.com/pterodactyl/panel/releases/latest/download/panel.tar.gz
-sudo tar -xzvf panel.tar.gz
-sudo chmod -R 755 storage/* bootstrap/cache
-
-# Configurer la base de données + .env
-cp .env.example .env
-php artisan key:generate
+# Les serveurs Pterodactyl se relanceront automatiquement après reboot.
     </pre>
 
     <div class="sep">────────────────────────────</div>
-    <h2>🎮 INSTALLER PTERODACTYL WINGS (DAEMON)</h2>
+    <h2>🌐 INSTALLER UN SITE WEB (AZURIOM)</h2>
     <pre>
-# Installer Docker requis
-sudo apt install -y docker.io
-sudo systemctl enable --now docker
+# Installer Apache, PHP et MariaDB
+sudo apt update && sudo apt install apache2 mariadb-server php php-mysql libapache2-mod-php unzip curl
 
-# Télécharger Wings
-cd /etc/pterodactyl
-sudo curl -Lo wings https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_amd64
-sudo chmod +x wings
-    </pre>
-
-    <div class="sep">────────────────────────────</div>
-    <h2>🌐 INSTALLER APACHE + MARIADB + PHP + PHPMYADMIN</h2>
-    <pre>sudo apt install apache2 mariadb-server php php-mysql libapache2-mod-php phpmyadmin</pre>
-
-    <div class="sep">────────────────────────────</div>
-    <h2>💻 INSTALLER AZURIOM (SITE WEB)</h2>
-    <pre>
+# Télécharger Azuriom
 cd /var/www/html
 sudo wget https://azuriom.com/download -O azuriom.zip
 sudo unzip azuriom.zip
 sudo chown -R www-data:www-data /var/www/html
+
+# Accéder au site via le navigateur
+http://IP_DU_SERVEUR ou domaine pointé vers le VPS
+    </pre>
+
+    <div class="sep">────────────────────────────</div>
+    <h2>🤖 CRÉER UN BOT DISCORD SIMPLIFIÉ (PYTHON)</h2>
+    <pre>
+# Installer Python et pip
+sudo apt install python3 python3-pip -y
+
+# Créer le bot (fichier bot.py)
+mkdir ~/botdiscord && cd ~/botdiscord
+nano bot.py
+
+# Exemple de code
+import discord
+from discord.ext import commands
+
+bot = commands.Bot(command_prefix="!")
+
+@bot.event
+async def on_ready():
+    print(f"Connecté en tant que {bot.user}")
+
+@bot.command()
+async def ping(ctx):
+    await ctx.send("Pong!")
+
+bot.run("VOTRE_TOKEN")
+
+# Installer dépendances et lancer
+pip3 install -U discord.py
+python3 bot.py
     </pre>
 
     <p style="text-align: center; margin-top: 50px;">
