@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Récapitulatif du Projet Minecraft</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📦 Tutoriels d'installation – Crimson Domination</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -20,40 +20,33 @@
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     }
-    h1, h2 {
+    h1 {
       color: #00bfff;
+      text-align: center;
+      margin-bottom: 30px;
     }
-    h3 {
-      color: #66ccff;
+    h2 {
+      color: #00ff99;
+      font-size: 20px;
+      margin-top: 40px;
+      border-top: 1px solid #333;
+      padding-top: 20px;
     }
-    ul {
-      line-height: 1.8;
-      padding-left: 20px;
+    .sep {
+      color: #666;
+      text-align: center;
+      margin: 20px 0;
+      letter-spacing: 2px;
     }
-    code, pre {
+    pre {
       background-color: #2a2a2a;
       color: #00ff99;
-      padding: 5px 10px;
+      padding: 15px;
       border-radius: 5px;
+      font-size: 14px;
+      line-height: 1.6;
       white-space: pre-wrap;
-      display: block;
-      margin-bottom: 10px;
-    }
-    p, a {
-      color: #ccc;
-    }
-    table {
-      width: 100%;
-      margin-top: 20px;
-      border-collapse: collapse;
-    }
-    th, td {
-      border: 1px solid #333;
-      padding: 10px;
-      text-align: left;
-    }
-    th {
-      background-color: #222;
+      margin-bottom: 20px;
     }
     a {
       color: #00bfff;
@@ -63,121 +56,63 @@
 </head>
 <body>
   <div class="container">
-    <h1>Récapitulatif du Projet Crimson Domination</h1>
+    <h1>📦 Tutoriels d'installation – Crimson Domination</h1>
 
-    <h2>📦 Choix des logiciels serveur</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Serveur</th>
-          <th>Logiciel recommandé</th>
-          <th>Version Minecraft</th>
-          <th>Pourquoi ?</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Lobby</td>
-          <td>🟢 <a href="https://papermc.io/downloads" target="_blank">PaperMC</a></td>
-          <td>1.20.4</td>
-          <td>Stable, rapide, pas besoin de fonctions PvP</td>
-        </tr>
-        <tr>
-          <td>Minage</td>
-          <td>🟢 <a href="https://papermc.io/downloads" target="_blank">PaperMC</a></td>
-          <td>1.20.4</td>
-          <td>Pas besoin d'options PvP spéciales</td>
-        </tr>
-        <tr>
-          <td>Survie (PvP)</td>
-          <td>🟠 <a href="https://purpurmc.org/downloads" target="_blank">Purpur</a></td>
-          <td>1.20.4</td>
-          <td>Ajoute des réglages PvP (hit delay, no-attack cooldown…)</td>
-        </tr>
-        <tr>
-          <td>BoxPvP</td>
-          <td>🟠 <a href="https://purpurmc.org/downloads" target="_blank">Purpur</a></td>
-          <td>1.20.4</td>
-          <td>Idéal pour serveurs PvP custom</td>
-        </tr>
-        <tr>
-          <td>BungeeCord</td>
-          <td>🔹 <a href="https://papermc.io/downloads#Waterfall" target="_blank">Waterfall</a></td>
-          <td>Proxy</td>
-          <td>Gère les connexions vers les serveurs</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="sep">────────────────────────────</div>
+    <h2>☕ INSTALLER JAVA</h2>
+    <pre>sudo apt update && sudo apt install -y openjdk-17-jre</pre>
 
-    <h2>📚 Tutoriel d'installation</h2>
-    <p>➡️ <a href="tutoriel.html">Voir le tutoriel Crimson Domination</a></p>
+    <div class="sep">────────────────────────────</div>
+    <h2>📁 CRÉER LES DOSSIERS POUR LES SERVEURS</h2>
+    <pre>mkdir -p /home/serveurs/{bungee,lobby,minage,survie1,survie2,site}</pre>
 
-    <h2>💸 Détail des coûts</h2>
+    <div class="sep">────────────────────────────</div>
+    <h2>⬇️ TÉLÉCHARGER LES SERVEURS MINECRAFT (ex. Paper)</h2>
+    <pre>
+cd /home/serveurs/lobby
+curl -o paper.jar https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/550/downloads/paper-1.20.4-550.jar
+    </pre>
 
-    <h3>🗓️ Paiement mensuel / annuel</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Élément</th>
-          <th>Prix</th>
-          <th>Période</th>
-          <th>Prix mensuel</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>🌐 <span style="color: #00bfff; text-decoration: underline;">Domaine crimsondomination.fr (OVH)</span></td>
-          <td>71,20 €</td>
-          <td>10 ans</td>
-          <td>~0,59 €/mois</td>
-        </tr>
-        <tr>
-          <td>💻 <a href="https://www.ovhcloud.com/fr/vps/configurator/?pricing=degressivity24&processor=Intel&vcore=8__vCore&storage=160__SSD__NVMe" target="_blank">VPS OVH Elite 8-8-160</a></td>
-          <td>34,00 €</td>
-          <td>1 an</td>
-          <td>~2,83 €/mois</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <th>Total mensuel estimé</th>
-          <th colspan="3">~3,42 €/mois</th>
-        </tr>
-      </tfoot>
-    </table>
+    <div class="sep">────────────────────────────</div>
+    <h2>🚀 LANCER LE SERVEUR AVEC RAM DÉFINIE</h2>
+    <pre>java -Xmx3G -jar paper.jar --nogui</pre>
 
-    <h3>💵 Paiement unique (plugins achetés une seule fois)</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Plugin</th>
-          <th>Prix</th>
-          <th>Période</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>🛡️ <a href="https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-8-1-21-7.83626/" target="_blank">Vulcan Anti-Cheat</a></td>
-          <td>17,05 €</td>
-          <td>Paiement unique</td>
-        </tr>
-        <tr>
-          <td>⚖️ <a href="https://www.spigotmc.org/resources/factionsuuid.1035/" target="_blank">FactionsUUID</a></td>
-          <td>13,65 €</td>
-          <td>Paiement unique</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <th>Total plugins (achat unique)</th>
-          <th colspan="2">30,70 €</th>
-        </tr>
-      </tfoot>
-    </table>
+    <div class="sep">────────────────────────────</div>
+    <h2>🔗 INSTALLER WATERFALL (RECOMMANDÉ POUR LE PROXY)</h2>
+    <pre>
+cd /home/serveurs/bungee
+curl -o waterfall.jar https://papermc.io/api/v2/projects/waterfall/versions/1.20/builds/539/downloads/waterfall-1.20-539.jar
+java -Xmx1G -jar waterfall.jar
+    </pre>
 
-    <h3>🧮 Total global</h3>
-    <p><strong>Total à payer aujourd'hui :</strong> <code>71,20 € + 34,00 € + 30,70 € = <strong>135,90 €</strong></code></p>
-    <p><strong>Coût moyen par mois :</strong> <code>~3,42 €</code> (hors plugins payés une seule fois)</p>
+    <div class="sep">────────────────────────────</div>
+    <h2>🐳 INSTALLER DOCKER + PORTAINER</h2>
+    <pre>
+sudo apt install docker.io -y
+sudo systemctl enable docker
+
+sudo docker volume create portainer_data
+
+sudo docker run -d -p 9443:9443 \
+  --name portainer \
+  --restart=always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v portainer_data:/data \
+  portainer/portainer-ce:latest
+    </pre>
+
+    <div class="sep">────────────────────────────</div>
+    <h2>🌐 INSTALLER APACHE + MARIADB + PHP + PHPMYADMIN</h2>
+    <pre>sudo apt install apache2 mariadb-server php php-mysql libapache2-mod-php phpmyadmin</pre>
+
+    <div class="sep">────────────────────────────</div>
+    <h2>💻 INSTALLER AZURIOM (SITE WEB)</h2>
+    <pre>
+cd /var/www/html
+sudo wget https://azuriom.com/download -O azuriom.zip
+sudo unzip azuriom.zip
+sudo chown -R www-data:www-data /var/www/html
+    </pre>
   </div>
 </body>
 </html>
