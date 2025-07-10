@@ -1,137 +1,213 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Récapitulatif des Coûts du Projet</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: auto;
-        }
-        h1 {
-            color: #0056b3;
-            text-align: center;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .total {
-            font-weight: bold;
-            text-align: right;
-            padding-top: 15px;
-            border-top: 2px solid #0056b3;
-        }
-        .note {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #666;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Récapitulatif du Projet Minecraft</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      margin: 0;
+      padding: 20px;
+      color: #eee;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    h1, h2 {
+      color: #00bfff;
+    }
+    h3 {
+      color: #66ccff;
+    }
+    ul {
+      line-height: 1.8;
+      padding-left: 20px;
+    }
+    code, pre {
+      background-color: #2a2a2a;
+      color: #00ff99;
+      padding: 5px 10px;
+      border-radius: 5px;
+      white-space: pre-wrap;
+      display: block;
+      margin-bottom: 10px;
+    }
+    p, a {
+      color: #ccc;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #222;
+    }
+    a {
+      color: #00bfff;
+      text-decoration: underline;
+    }
+    /* Styles spécifiques pour le tableau des coûts */
+    .cost-table th, .cost-table td {
+        border: 1px solid #333; /* Assure que les bordures correspondent */
+    }
+    .cost-table tfoot th {
+        background-color: #2a2a2a; /* Différencie le pied de tableau */
+        color: #00ff99;
+        text-align: right; /* Aligne le texte du total à droite */
+    }
+    .cost-table tfoot th:first-child {
+        text-align: left; /* Garde le libellé "Total" à gauche */
+    }
+    .cost-note {
+        font-size: 0.9em;
+        color: #999;
+        margin-top: 15px;
+        line-height: 1.5;
+    }
+    .link-section { /* Nouveau style pour la section des liens */
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #333;
+    }
+    .link-section a {
+        font-size: 1.1em;
+        padding: 8px 15px;
+        border: 1px solid #00bfff;
+        border-radius: 5px;
+        display: inline-block;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .link-section a:hover {
+        background-color: #00bfff;
+        color: #1a1a1a;
+        text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Récapitulatif des Coûts du Projet</h1>
+  <div class="container">
+    <h1>Récapitulatif du Projet Crimson Domination</h1>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Élément</th>
-                    <th>Prix</th>
-                    <th>Période</th>
-                    <th>Coût Annuel Estimé</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>🌐 Domaine crimsondomination.fr (OVH)</td>
-                    <td>7,07 €</td>
-                    <td>1 an</td>
-                    <td>7,07 €</td>
-                </tr>
-                <tr>
-                    <td>💻 VPS OVH (actuel)</td>
-                    <td>34,00 €</td>
-                    <td>1 mois</td>
-                    <td>408,00 € (34,00 € × 12)</td>
-                </tr>
-                <tr>
-                    <td>🛡️ Vulcan Anti-Cheat</td>
-                    <td>17,05 €</td>
-                    <td>Paiement unique</td>
-                    <td>17,05 €</td>
-                </tr>
-                <tr>
-                    <td>⚖️ FactionsUUID</td>
-                    <td>13,65 €</td>
-                    <td>Paiement unique</td>
-                    <td>13,65 €</td>
-                </tr>
-                <tr>
-                    <td>🔒 LiteBans</td>
-                    <td>7,26 €</td>
-                    <td>Paiement unique</td>
-                    <td>7,26 €</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3" class="total">Coût Total Estimé (première année) :</td>
-                    <td class="total">453,03 €</td>
-                </tr>
-            </tfoot>
-        </table>
+    <h2>📦 Choix des logiciels serveur</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Serveur</th>
+          <th>Logiciel recommandé</th>
+          <th>Version Minecraft</th>
+          <th>Pourquoi ?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lobby</td>
+          <td>🟢 <a href="https://fill-data.papermc.io/v1/objects/cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b/paper-1.20.4-499.jar">PaperMC</a></td>
+          <td>1.20.4</td>
+          <td>Stable, rapide, pas besoin de fonctions PvP</td>
+        </tr>
+        <tr>
+          <td>Minage</td>
+          <td>🟢 <a href="https://fill-data.papermc.io/v1/objects/cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b/paper-1.20.4-499.jar">PaperMC</a></td>
+          <td>1.20.4</td>
+          <td>Pas besoin d'options PvP spéciales</td>
+        </tr>
+        <tr>
+          <td>Survie (PvP)</td>
+          <td>🟠 <a href="https://api.purpurmc.org/v2/purpur/1.21.7/2472/download">Purpur</a></td>
+          <td>1.20.4</td>
+          <td>Ajoute des réglages PvP (hit delay, no-attack cooldown…)</td>
+        </tr>
+        <tr>
+          <td>BoxPvP</td>
+          <td>🟠 <a href="https://api.purpurmc.org/v2/purpur/1.21.7/2472/download">Purpur</a></td>
+          <td>1.20.4</td>
+          <td>Idéal pour serveurs PvP custom</td>
+        </tr>
+        <tr>
+          <td>BungeeCord</td>
+          <td>🔹 <a href="https://fill-data.papermc.io/v1/objects/7716fd7b95b11974088c196f0dd6f34156986b994966b12bcfe4f7623f4cb1a6/waterfall-1.21-594.jar">Waterfall</a></td>
+          <td>Proxy</td>
+          <td>Gère les connexions vers les serveurs</td>
+        </tr>
+      </tbody>
+    </table>
 
-        <p class="note">
-            Ce récapitulatif présente le coût total estimé pour la première année du projet, en incluant les paiements uniques et la projection annuelle des coûts récurrents.
-        </p>
+    <h2>📚 Tutoriel d'installation</h2>
+    <p>➡️ <a href="tutoriels.html" style="color: #00bfff; text-decoration: underline;">Voir le tutoriel Crimson Domination</a></p>
 
-        <hr>
-        <h2>Détails Supplémentaires</h2>
-        <div id="details-content">
-            Chargement des détails...
-        </div>
+    
+    <h2>💰 Coût total du projet :</h2>
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>Élément</th>
+          <th>Prix</th>
+          <th>Période</th>
+          <th>Coût Annuel Estimé</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🌐 <a href="https://www.ovh.com/fr/order/webcloud/#/webCloud/hosting/select?selection=~(domains~(list~(~(name~'crimsondomination.fr))~options~(~'dnssec~'email)))" target="_blank">Domaine crimsondomination.fr (OVH)</a></td>
+          <td>7,07 €</td>
+          <td>1 an</td>
+          <td>7,07 €</td>
+        </tr>
+        <tr>
+          <td>💻 <a href="https://www.ovhcloud.com/fr/vps/configurator/?pricing=degressivity24&processor=Intel&vcore=8__vCore&storage=160__SSD__NVMe" target="_blank">VPS OVH Elite 8-8-160</a></td>
+          <td>34,00 €</td>
+          <td>1 mois</td>
+          <td>408,00 € (34,00 € × 12)</td>
+        </tr>
+        <tr>
+          <td>🛡️ <a href="https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-8-1-21-7.83626/">Vulcan Anti-Cheat</a></td>
+          <td>17,05 €</td>
+          <td>Paiement unique</td>
+          <td>17,05 €</td>
+        </tr>
+        <tr>
+          <td>⚖️ <a href="https://www.spigotmc.org/resources/factionsuuid.1035/">FactionsUUID</a></td>
+          <td>13,65 €</td>
+          <td>Paiement unique</td>
+          <td>13,65 €</td>
+        </tr>
+        <tr>
+          <td>🔒 <a href="https://www.spigotmc.org/resources/litebans.3715/">LiteBans</a></td>
+          <td>7,26 €</td>
+          <td>Paiement unique</td>
+          <td>7,26 €</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="3">Total annuel estimé</th>
+          <th>453,03 €</th>
+        </tr>
+      </tfoot>
+    </table>
+    <p class="cost-note">
+        **Note importante :** Le cœur des serveurs Minecraft (Lobby, Minage, Survie, BoxPvP), comme les logiciels **PaperMC** et **Purpur**, n'engendre pas de coût direct car ils sont **gratuits et open-source**. Ils sont installés sur le **VPS OVH** et utilisent les plugins listés ci-dessus pour fonctionner. Le proxy **Waterfall** est également gratuit et essentiel pour la gestion des connexions entre les différents serveurs.
+    </p>
 
+    <div class="link-section">
+        <a href="details.html">Voir les détails supplémentaires du projet</a>
     </div>
 
-    <script>
-        // Fonction pour charger le contenu du fichier details.html
-        async function loadDetailsContent() {
-            try {
-                const response = await fetch('details.html'); // Assurez-vous que details.html est dans le même dossier
-                if (!response.ok) {
-                    throw new Error(`Erreur HTTP: ${response.status}`);
-                }
-                const data = await response.text();
-                document.getElementById('details-content').innerHTML = data;
-            } catch (error) {
-                console.error("Erreur lors du chargement des détails:", error);
-                document.getElementById('details-content').innerHTML = "<p>Impossible de charger les détails supplémentaires.</p>";
-            }
-        }
-
-        // Appeler la fonction au chargement de la page
-        document.addEventListener('DOMContentLoaded', loadDetailsContent);
-    </script>
+  </div>
 </body>
 </html>
