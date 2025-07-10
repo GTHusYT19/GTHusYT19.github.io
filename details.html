@@ -40,7 +40,7 @@
             margin-bottom: 10px;
         }
         p, a {
-            color: #ccc;
+            color: #ccc; /* Couleur par défaut pour les paragraphes et liens, sera surchargée par navigation-buttons-container a */
         }
         table {
             width: 100%;
@@ -55,19 +55,36 @@
         th {
             background-color: #222;
         }
-        a {
-            color: #00bfff;
-            text-decoration: underline;
+        /* Styles pour les sections de liens/boutons */
+        .navigation-buttons-container {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            display: flex; /* Utilisation de flexbox pour aligner les boutons */
+            justify-content: center; /* Centrer les boutons */
+            gap: 20px; /* Espacement entre les boutons */
+        }
+        .navigation-buttons-container a {
+            font-size: 1.1em;
+            padding: 10px 20px;
+            border: 1px solid #00bfff;
+            border-radius: 5px;
+            display: inline-block;
+            text-decoration: none;
+            color: #00bfff; /* Couleur du texte du bouton */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .navigation-buttons-container a:hover {
+            background-color: #00bfff;
+            color: #1a1a1a; /* Couleur du texte au survol */
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Détails du Projet Crimson Domination</h1>
-
-        <p><a href="projet.html" style="color: #00bfff;">&larr; Retour au récapitulatif principal</a></p>
-
-        ---
 
         <h2>Serveurs et Logiciels Spécifiques</h2>
         <p>Ici, vous pouvez détailler pourquoi chaque logiciel a été choisi pour chaque type de serveur, les configurations spécifiques ou les plugins essentiels.</p>
@@ -89,7 +106,7 @@
             </li>
         </ul>
 
-        ---
+        <div class="sep">────────────────────────────</div>
 
         <h2>Explication des Coûts Détaillés</h2>
         <p>Vous pouvez utiliser cette section pour expliquer pourquoi certains coûts sont récurrents, pourquoi d'autres sont uniques, et les avantages de chaque dépense.</p>
@@ -125,7 +142,7 @@
             </li>
         </ul>
 
-        ---
+        <div class="sep">────────────────────────────</div>
 
         <h2>Roadmap et Prochaines Étapes</h2>
         <p>Utilisez cette section pour esquisser les futures étapes du projet, les fonctionnalités à venir, ou les objectifs à long terme.</p>
@@ -137,9 +154,10 @@
             <li>Prochaines fonctionnalités envisagées...</li>
         </ul>
 
-        ---
-
-        <p><a href="index.html" style="color: #00bfff;">&larr; Retour au page principal</a></p>
+        <div class="navigation-buttons-container">
+            <a href="recap.html">⬅️ Retour au récapitulatif</a>
+            <a href="tutoriels.html">Voir le tutoriel d'installation</a>
+        </div>
 
     </div>
 </body>
