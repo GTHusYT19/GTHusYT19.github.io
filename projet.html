@@ -105,6 +105,33 @@
         <p class="note">
             Ce récapitulatif présente le coût total estimé pour la première année du projet, en incluant les paiements uniques et la projection annuelle des coûts récurrents.
         </p>
+
+        <hr>
+        <h2>Détails Supplémentaires</h2>
+        <div id="details-content">
+            Chargement des détails...
+        </div>
+
     </div>
+
+    <script>
+        // Fonction pour charger le contenu du fichier details.html
+        async function loadDetailsContent() {
+            try {
+                const response = await fetch('details.html'); // Assurez-vous que details.html est dans le même dossier
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP: ${response.status}`);
+                }
+                const data = await response.text();
+                document.getElementById('details-content').innerHTML = data;
+            } catch (error) {
+                console.error("Erreur lors du chargement des détails:", error);
+                document.getElementById('details-content').innerHTML = "<p>Impossible de charger les détails supplémentaires.</p>";
+            }
+        }
+
+        // Appeler la fonction au chargement de la page
+        document.addEventListener('DOMContentLoaded', loadDetailsContent);
+    </script>
 </body>
 </html>
