@@ -61,15 +61,15 @@
     }
     /* Styles spécifiques pour le tableau des coûts */
     .cost-table th, .cost-table td {
-        border: 1px solid #333; /* Assure que les bordures correspondent */
+        border: 1px solid #333;
     }
     .cost-table tfoot th {
-        background-color: #2a2a2a; /* Différencie le pied de tableau */
+        background-color: #2a2a2a;
         color: #00ff99;
-        text-align: right; /* Aligne le texte du total à droite */
+        text-align: right;
     }
     .cost-table tfoot th:first-child {
-        text-align: left; /* Garde le libellé "Total" à gauche */
+        text-align: left;
     }
     .cost-note {
         font-size: 0.9em;
@@ -77,11 +77,14 @@
         margin-top: 15px;
         line-height: 1.5;
     }
-    .link-section { /* Nouveau style pour la section des liens */
+    .link-section {
         text-align: center;
         margin-top: 30px;
         padding-top: 20px;
         border-top: 1px solid #333;
+        display: flex; /* Utilisation de flexbox pour aligner les boutons */
+        justify-content: center; /* Centrer les boutons */
+        gap: 20px; /* Espacement entre les boutons */
     }
     .link-section a {
         font-size: 1.1em;
@@ -147,10 +150,6 @@
       </tbody>
     </table>
 
-    <h2>📚 Tutoriel d'installation</h2>
-    <p>➡️ <a href="tutoriels.html" style="color: #00bfff; text-decoration: underline;">Voir le tutoriel Crimson Domination</a></p>
-
-    
     <h2>💰 Coût total du projet :</h2>
     <table class="cost-table">
       <thead>
@@ -205,7 +204,8 @@
     </p>
 
     <div class="link-section">
-        <a href="details.html">Voir les détails supplémentaires du projet</a>
+        <a href="tutoriels.html">Voir le tutoriel d'installation</a>
+        <a href="details.html">Voir les détails supplémentaires</a>
     </div>
 
   </div>
