@@ -1,90 +1,93 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>📦 Tutoriels d'installation – Crimson Domination</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #111;
-      margin: 0;
-      padding: 20px;
-      color: #eee;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background: #1a1a1a;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-    h1 {
-      color: #00bfff;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    h2 {
-      color: #00ff99;
-      font-size: 20px;
-      margin-top: 40px;
-      border-top: 1px solid #333;
-      padding-top: 20px;
-    }
-    .sep {
-      color: #666;
-      text-align: center;
-      margin: 20px 0;
-      letter-spacing: 2px;
-  	  font-weight: bold; /* Added for better visibility */
-    }
-    pre {
-      background-color: #2a2a2a;
-      color: #00ff99;
-      padding: 15px;
-      border-radius: 5px;
-      font-size: 14px;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      margin-bottom: 20px;
-    }
-    a {
-      color: #00bfff;
-      text-decoration: underline;
-    }
-    /* Styles pour le bouton de retour */
-    .back-button-container {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📦 Tutoriels d'installation – Crimson Domination</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      margin: 0;
+      padding: 20px;
+      color: #eee;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    h1 {
+      color: #00bfff;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    h2 {
+      color: #00ff99;
+      font-size: 20px;
+      margin-top: 40px;
+      border-top: 1px solid #333;
+      padding-top: 20px;
+    }
+    .sep {
+      color: #666;
+      text-align: center;
+      margin: 20px 0;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+    pre {
+      background-color: #2a2a2a;
+      color: #00ff99;
+      padding: 15px;
+      border-radius: 5px;
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      margin-bottom: 20px;
+    }
+    a {
+      color: #00bfff;
+      text-decoration: underline;
+    }
+    /* Styles pour les sections de liens/boutons */
+    .navigation-buttons-container { /* Renommé pour être plus générique pour plusieurs boutons */
         text-align: center;
         margin-top: 50px;
         padding-top: 20px;
         border-top: 1px solid #333;
+        display: flex; /* Utilisation de flexbox pour aligner les boutons */
+        justify-content: center; /* Centrer les boutons */
+        gap: 20px; /* Espacement entre les boutons */
     }
-    .back-button-container a {
+    .navigation-buttons-container a {
         font-size: 1.1em;
         padding: 10px 20px;
         border: 1px solid #00bfff;
         border-radius: 5px;
         display: inline-block;
         text-decoration: none;
-        color: #00bfff; /* Couleur du texte du bouton */
+        color: #00bfff;
         transition: background-color 0.3s, color 0.3s;
     }
-    .back-button-container a:hover {
+    .navigation-buttons-container a:hover {
         background-color: #00bfff;
-        color: #1a1a1a; /* Couleur du texte au survol */
+        color: #1a1a1a;
         text-decoration: none;
     }
-  </style>
+  </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container">
 
-    <h1>📦 Tutoriels d'installation – Crimson Domination</h1>
+    <h1>📦 Tutoriels d'installation – Crimson Domination</h1>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>🧠 EXPLICATION COMPLÈTE DE L'INSTALLATION</h2>
-    <pre>
+    <div class="sep">────────────────────────────</div>
+    <h2>🧠 EXPLICATION COMPLÈTE DE L'INSTALLATION</h2>
+    <pre>
 Ce tutoriel couvre toutes les étapes pour installer un serveur de jeux complet sur un seul VPS OVH, incluant :
 
 - Le panel Pterodactyl (gestion web)
@@ -95,18 +98,18 @@ Ce tutoriel couvre toutes les étapes pour installer un serveur de jeux complet 
 - La sécurité (UFW, Fail2Ban, HTTPS, sauvegardes)
 
 💡 Tout est optimisé pour un VPS 8 vCPU / 32 Go de RAM / 160 Go NVMe.
-    </pre>
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>🧰 INSTALLER LE PANEL PTERODACTYL AVEC LE SCRIPT AUTOMATIQUE</h2>
-    <pre>
+    <div class="sep">────────────────────────────</div>
+    <h2>🧰 INSTALLER LE PANEL PTERODACTYL AVEC LE SCRIPT AUTOMATIQUE</h2>
+    <pre>
 ssh root@IP_DU_VPS
 bash &lt;(curl -s https://raw.githubusercontent.com/pterodactyl-installer/pterodactyl-installer/main/install.sh)
-    </pre>
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>🔧 CONFIGURATION COMPLÈTE DU PANEL PTERODACTYL</h2>
-    <pre>
+    <div class="sep">────────────────────────────</div>
+    <h2>🔧 CONFIGURATION COMPLÈTE DU PANEL PTERODACTYL</h2>
+    <pre>
 # Créer la base de données
 mysql -u root -p
 CREATE DATABASE panel;
@@ -123,52 +126,52 @@ php artisan p:environment:setup
 php artisan p:environment:database
 php artisan migrate --seed --force
 php artisan p:user:make
-    </pre>
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>🌐 CONFIGURATION NGINX POUR LE PANEL</h2>
-    <pre>
+    <div class="sep">────────────────────────────</div>
+    <h2>🌐 CONFIGURATION NGINX POUR LE PANEL</h2>
+    <pre>
 nano /etc/nginx/sites-available/pterodactyl
 
 # Exemple :
 server {
-    listen 80;
-    server_name votre-domaine.fr;
-    root /var/www/pterodactyl/public;
+    listen 80;
+    server_name votre-domaine.fr;
+    root /var/www/pterodactyl/public;
 
-    index index.php;
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
+    index index.php;
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
 
-    location ~ \.(php|phar)$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include fastcgi_params;
-    }
+    location ~ \.(php|phar)$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
 }
 
 ln -s /etc/nginx/sites-available/pterodactyl /etc/nginx/sites-enabled/pterodactyl
 systemctl restart nginx
-    </pre>
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>📂 CRÉER 5 SERVEURS VIA LE PANEL</h2>
-    <pre>
+    <div class="sep">────────────────────────────</div>
+    <h2>📂 CRÉER 5 SERVEURS VIA LE PANEL</h2>
+    <pre>
 1. Accéder à https://votre-domaine-ou-ip
 2. Connexion admin &gt; Serveurs &gt; Créer un serveur
 3. Exemple de serveurs :
-   - Lobby
-   - Survie1
-   - Survie2
-   - Minage
-   - BungeeCord
-    </pre>
+   - Lobby
+   - Survie1
+   - Survie2
+   - Minage
+   - BungeeCord
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>🧠 ALLOUER DE LA RAM À CHAQUE SERVEUR</h2>
-    <pre>
+    <div class="sep">────────────────────────────</div>
+    <h2>🧠 ALLOUER DE LA RAM À CHAQUE SERVEUR</h2>
+    <pre>
 - RAM : 4096 (4 Go)
 - CPU : 200 (2 cœurs logiques)
 - Stockage : 10240 (10 Go)
@@ -180,11 +183,11 @@ systemctl restart nginx
 - Lobby : 2 Go
 - Survie1/2 : 4 Go chacun
 - Minage : 4 Go
-    </pre>
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>🚀 INSTALLER LE NODE (WINGS)</h2>
-    <pre>
+    <div class="sep">────────────────────────────</div>
+    <h2>🚀 INSTALLER LE NODE (WINGS)</h2>
+    <pre>
 mkdir -p /etc/pterodactyl
 cd /etc/pterodactyl
 curl -Lo wings https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_amd64
@@ -193,11 +196,11 @@ chmod +x wings
 # Obtenir config dans le panel &gt; Nodes &gt; "Configurer Wings"
 nano /etc/pterodactyl/config.yml
 ./wings
-    </pre>
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>⚙️ ACTIVER WINGS AU DÉMARRAGE</h2>
-    <pre>
+    <div class="sep">────────────────────────────</div>
+    <h2>⚙️ ACTIVER WINGS AU DÉMARRAGE</h2>
+    <pre>
 nano /etc/systemd/system/wings.service
 
 [Unit]
@@ -217,11 +220,11 @@ WantedBy=multi-user.target
 # Lancer
 systemctl daemon-reexec
 systemctl enable --now wings
-    </pre>
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>🧠 EXPLICATION COMPLÈTE DE L'INSTALLATION</h2>
-    <pre>
+    <div class="sep">────────────────────────────</div>
+    <h2>🧠 EXPLICATION COMPLÈTE DE L'INSTALLATION</h2>
+    <pre>
 Ce tutoriel couvre toutes les étapes pour installer un serveur de jeux complet sur un seul VPS OVH, incluant :
 
 - Le panel Pterodactyl (gestion web)
@@ -235,9 +238,9 @@ Voici comment tout fonctionne ensemble :
 
 1. Le script Pterodactyl installe automatiquement le panel web + dépendances.
 2. Tu configures manuellement :
-   - la base de données MariaDB
-   - le fichier .env de Laravel
-   - Nginx pour exposer le site
+   - la base de données MariaDB
+   - le fichier .env de Laravel
+   - Nginx pour exposer le site
 3. Tu crées les 5 serveurs dans l’interface du panel avec RAM, CPU, ports.
 4. Wings (le node) est installé pour exécuter les serveurs (Docker).
 5. Wings est lancé en service systemd (redémarrage automatique).
@@ -249,95 +252,95 @@ Voici comment tout fonctionne ensemble :
 11. Un système SMTP permet l’envoi de mails depuis le panel.
 
 💡 Résultat : tout est fonctionnel, sécurisé, et prêt pour héberger ta communauté Minecraft/Discord !
-    </pre>
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>🧰 INSTALLER LE PANEL PTERODACTYL AVEC LE SCRIPT AUTOMATIQUE</h2>
+    <div class="sep">────────────────────────────</div>
+    <h2>🧰 INSTALLER LE PANEL PTERODACTYL AVEC LE SCRIPT AUTOMATIQUE</h2>
 <pre>
 # Connexion SSH à votre VPS
 ssh root@IP_DU_VPS
 
 # Télécharger le script officiel
 bash <(curl -s https://raw.githubusercontent.com/pterodactyl-installer/pterodactyl-installer/main/install.sh)
-    </pre>
+    </pre>
 
-    <h2>🔧 CONFIGURATION COMPLÈTE DU PANEL PTERODACTYL</h2>
+    <h2>🔧 CONFIGURATION COMPLÈTE DU PANEL PTERODACTYL</h2>
 <pre>
 # Étapes principales après installation automatique :
 
 1. Créer la base de données dans MariaDB :
-   mysql -u root -p
-   CREATE DATABASE panel;
-   CREATE USER 'ptero'@'127.0.0.1' IDENTIFIED BY 'motdepassefort';
-   GRANT ALL PRIVILEGES ON panel.* TO 'ptero'@'127.0.0.1';
-   FLUSH PRIVILEGES;
-   EXIT;
+   mysql -u root -p
+   CREATE DATABASE panel;
+   CREATE USER 'ptero'@'127.0.0.1' IDENTIFIED BY 'motdepassefort';
+   GRANT ALL PRIVILEGES ON panel.* TO 'ptero'@'127.0.0.1';
+   FLUSH PRIVILEGES;
+   EXIT;
 
 2. Configurer l'environnement Laravel :
-   cd /var/www/pterodactyl
-   cp .env.example .env
-   php artisan key:generate
-   php artisan p:environment:setup
-   php artisan p:environment:database
-   php artisan migrate --seed --force
-   php artisan p:user:make
+   cd /var/www/pterodactyl
+   cp .env.example .env
+   php artisan key:generate
+   php artisan p:environment:setup
+   php artisan p:environment:database
+   php artisan migrate --seed --force
+   php artisan p:user:make
 
 3. Configurer Nginx pour le panel :
-   nano /etc/nginx/sites-available/pterodactyl
+   nano /etc/nginx/sites-available/pterodactyl
 
-   # Exemple de bloc :
-   server {
-       listen 80;
-       server_name votre-domaine.fr;
-       root /var/www/pterodactyl/public;
+   # Exemple de bloc :
+   server {
+       listen 80;
+       server_name votre-domaine.fr;
+       root /var/www/pterodactyl/public;
 
-       index index.php;
-       location / {
-           try_files $uri $uri/ /index.php?$query_string;
-       }
+       index index.php;
+       location / {
+           try_files $uri $uri/ /index.php?$query_string;
+       }
 
-       location ~ \.(php|phar)$ {
-           include snippets/fastcgi-php.conf;
-           fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
-           fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-           include fastcgi_params;
-       }
-   }
+       location ~ \.(php|phar)$ {
+           include snippets/fastcgi-php.conf;
+           fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+           fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+           include fastcgi_params;
+       }
+   }
 
-   ln -s /etc/nginx/sites-available/pterodactyl /etc/nginx/sites-enabled/pterodactyl
-   systemctl restart nginx
-    </pre>
+   ln -s /etc/nginx/sites-available/pterodactyl /etc/nginx/sites-enabled/pterodactyl
+   systemctl restart nginx
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>📂 CRÉER 5 SERVEURS VIA LE PANEL</h2>
+    <div class="sep">────────────────────────────</div>
+    <h2>📂 CRÉER 5 SERVEURS VIA LE PANEL</h2>
 <pre>
 1. Accédez à votre panel : https://votre-domaine-ou-ip
 2. Connectez-vous en tant qu'administrateur
 3. Allez dans : "Serveurs" > "Créer un serveur"
 4. Répétez l'opération pour les 5 serveurs :
-   - Lobby
-   - Survie1
-   - Survie2
-   - Minage
-   - BungeeCord (ou Waterfall)
+   - Lobby
+   - Survie1
+   - Survie2
+   - Minage
+   - BungeeCord (ou Waterfall)
 
 💡 Pensez à définir une allocation de RAM, un port, une image Docker valide (ex: ghcr.io/pterodactyl/yolks:java_17), et à activer le serveur Wings associé.
-    </pre>
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>🧠 ALLOUER DE LA RAM À CHAQUE SERVEUR</h2>
+    <div class="sep">────────────────────────────</div>
+    <h2>🧠 ALLOUER DE LA RAM À CHAQUE SERVEUR</h2>
 <pre>
 Lors de la création de chaque serveur :
 
 1. Dans l’onglet « Limites » :
-   - Mémoire (RAM) : ex. 4096 pour 4 Go
-   - Mémoire de swap : 0
-   - CPU : 200 pour 2 cœurs (200% d'un cœur)
-   - Stockage : ex. 10240 pour 10 Go
+   - Mémoire (RAM) : ex. 4096 pour 4 Go
+   - Mémoire de swap : 0
+   - CPU : 200 pour 2 cœurs (200% d'un cœur)
+   - Stockage : ex. 10240 pour 10 Go
 
 2. Activer les limites :
-   - Cochez « Appliquer les limites mémoire »
-   - Cochez « Bloquer sur dépassement » si vous voulez éviter les crash
+   - Cochez « Appliquer les limites mémoire »
+   - Cochez « Bloquer sur dépassement » si vous voulez éviter les crash
 
 💡 Exemple de répartition RAM sur un VPS 32 Go :
 - Panel + Azuriom + MariaDB : 2-3 Go
@@ -347,19 +350,19 @@ Lors de la création de chaque serveur :
 - Survie2 : 4 Go
 - Minage : 4 Go
 - Discord Bot : < 256 Mo
-    </pre>
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>⚙️ ASTUCE POUR LANCEMENT AUTOMATIQUE DES SERVEURS</h2>
+    <div class="sep">────────────────────────────</div>
+    <h2>⚙️ ASTUCE POUR LANCEMENT AUTOMATIQUE DES SERVEURS</h2>
 <pre>
 # Assurez-vous que Wings est activé au démarrage
 sudo systemctl enable wings
 
 # Les serveurs Pterodactyl se relanceront automatiquement après reboot.
-    </pre>
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>🌐 INSTALLER UN SITE WEB (AZURIOM)</h2>
+    <div class="sep">────────────────────────────</div>
+    <h2>🌐 INSTALLER UN SITE WEB (AZURIOM)</h2>
 <pre>
 # Installer Apache, PHP et MariaDB
 sudo apt update && sudo apt install apache2 mariadb-server php php-mysql libapache2-mod-php unzip curl
@@ -372,10 +375,10 @@ sudo chown -R www-data:www-data /var/www/html
 
 # Accéder au site via le navigateur
 http://IP_DU_SERVEUR ou domaine pointé vers le VPS
-    </pre>
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-    <h2>🤖 CRÉER UN BOT DISCORD SIMPLIFIÉ (PYTHON)</h2>
+    <div class="sep">────────────────────────────</div>
+    <h2>🤖 CRÉER UN BOT DISCORD SIMPLIFIÉ (PYTHON)</h2>
 <pre>
 # Installer Python et pip
 sudo apt install python3 python3-pip -y
@@ -388,25 +391,25 @@ nano bot.py
 import discord
 from discord.ext import commands
 
-bot = commands.Bot(command_prefix="!")
+bot = commands.commands.Bot(command_prefix="!")
 
 @bot.event
 async def on_ready():
-    print(f"Connecté en tant que {bot.user}")
+    print(f"Connecté en tant que {bot.user}")
 
 @bot.command()
 async def ping(ctx):
-    await ctx.send("Pong!")
+    await ctx.send("Pong!")
 
 bot.run("VOTRE_TOKEN")
 
 # Installer dépendances et lancer
 pip3 install -U discord.py
 python3 bot.py
-    </pre>
+    </pre>
 
-    <div class="sep">────────────────────────────</div>
-<h2>🚀 INSTALLER LE NODE (WINGS)</h2>
+    <div class="sep">────────────────────────────</div>
+    <h2>🚀 INSTALLER LE NODE (WINGS)</h2>
 <pre>
 # Créer le dossier
 mkdir -p /etc/pterodactyl
@@ -513,9 +516,11 @@ MAIL_FROM_NAME="Crimson Panel"
 php artisan config:clear
 </pre>
 
-  <div class="back-button-container">
-  <a href="recap.html">⬅️ Retour au récapitulatif</a>
-</div>
-</div>
+    <div class="navigation-buttons-container">
+        <a href="recap.html">⬅️ Retour au récapitulatif</a>
+        <a href="details.html">Voir les détails supplémentaires</a>
+    </div>
+
+  </div>
 </body>
 </html>
