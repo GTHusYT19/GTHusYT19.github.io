@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Accès aux Pages</title>
   <style>
     body {
@@ -37,6 +37,19 @@
       text-decoration: none;
       font-size: 20px;
       font-weight: bold;
+      outline-offset: 3px;
+      outline-color: transparent;
+      transition: outline-color 0.3s ease, transform 0.1s ease;
+      display: inline-block;
+      user-select: none;
+    }
+    a:focus-visible {
+      outline-color: #00bfff;
+      outline-style: solid;
+      outline-width: 2px;
+    }
+    a:active {
+      transform: scale(0.95);
     }
   </style>
 </head>
@@ -46,9 +59,17 @@
 
   <div class="link-container">
     <div class="link-box">
-      <a href="projet.html" target="_blank">📘 Crimson Domination - Guide</a>
+      <a href="projet.html" target="_blank" rel="noopener noreferrer">📘 Crimson Domination - Guide</a>
     </div>
   </div>
+
+  <script>
+    // Sécuriser tous les liens dans .link-box a : ouvrir dans nouvel onglet avec rel correct
+    document.querySelectorAll('.link-box a').forEach(link => {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    });
+  </script>
 
 </body>
 </html>
